@@ -18,7 +18,6 @@ const buscarPeliculas = async () => {
 
     setLoading(true);
     setError("");
-
     const response = await axios.get(
       `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
     );
@@ -50,6 +49,10 @@ const buscarPeliculas = async () => {
       setBusqueda={setBusqueda}
       buscarPeliculas={buscarPeliculas}
     />
+
+    {loading && <h2>Cargando...</h2>}
+
+    {error && <h2>{error}</h2>}
 
     <ListaPeliculas peliculas={peliculas} />
 
