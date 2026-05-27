@@ -9,9 +9,9 @@ function App() {
 
   const buscarPeliculas = async () => {
 
-    const response = await axios.get(
-      `https://www.omdbapi.com/?apikey=http://www.omdbapi.com/?i=tt3896198&apikey=a1a0b01a&s=${busqueda}`
-    );
+ const response = await axios.get(
+  `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
+);
 
     setPeliculas(response.data.Search);
   };
