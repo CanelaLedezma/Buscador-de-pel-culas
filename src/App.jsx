@@ -1,23 +1,41 @@
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import BarraBusqueda from "./components/BarraBusqueda/BarraBusqueda";
-import ListaPeliculas from "./components/ListaPeliculas/ListaPeliculas";
-
+import BarraBusqueda from "./componentes/BarraBusqueda/BarraBusqueda";
+import ListaPeliculas from "./componentes/ListaPeliculas/ListaPeliculas";
 function App() {
 
   const [peliculas, setPeliculas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-  const buscarPeliculas = async () => {
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
+const buscarPeliculas = async () => {
 
-  const response = await axios.get(
-    `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
-  );
+  if (busqueda === "") return;
 
-  if (response.data.Search) {
-    setPeliculas(response.data.Search);
-  } else {
-    setPeliculas([]);
+  try {
+
+    setLoading(true);
+    setError("");
+
+    const response = await axios.get(
+      `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
+    );
+
+    if (response.data.Search) {
+      setPeliculas(response.data.Search);
+    } else {
+      setPeliculas([]);
+    }
+
+    setLoading(false);
+
+  } catch {
+
+    setError("Ocurrió un error");
+    setLoading(false);
+
   }
 
 };
