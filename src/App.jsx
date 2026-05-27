@@ -1,52 +1,42 @@
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import BarraBusqueda from "./components/BarraBusqueda/BarraBusqueda";
+import ListaPeliculas from "./components/ListaPeliculas/ListaPeliculas";
 
 function App() {
 
   const [peliculas, setPeliculas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
-
   const buscarPeliculas = async () => {
 
- const response = await axios.get(
-  `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
-);
+  const response = await axios.get(
+    `https://www.omdbapi.com/?apikey=a1a0b01a&s=${busqueda}`
+  );
 
+  if (response.data.Search) {
     setPeliculas(response.data.Search);
-  };
+  } else {
+    setPeliculas([]);
+  }
+
+};
 
   return (
-    <div>
+  <div>
 
-      <h1>Buscador IMDb</h1>
+    <h1>Buscador IMDb</h1>
 
-      <input
-        type="text"
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-      />
+    <BarraBusqueda
+      busqueda={busqueda}
+      setBusqueda={setBusqueda}
+      buscarPeliculas={buscarPeliculas}
+    />
 
-      <button onClick={buscarPeliculas}>
-        Buscar
-      </button>
+    <ListaPeliculas peliculas={peliculas} />
 
-      {peliculas.map((peli) => (
-        <div>
-
-          <img src={peli.Poster} />
-
-          <h3>{peli.Title}</h3>
-
-          <p>{peli.Year}</p>
-
-          <p>{peli.Type}</p>
-
-        </div>
-      ))}
-
-    </div>
-  );
+  </div>
+);
 }
 
 export default App;
