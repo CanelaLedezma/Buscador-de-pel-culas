@@ -43,14 +43,17 @@ function App() {
 
 const obtenerDetalle = async (id) => {
 
+  console.log(id);
+
   const response = await axios.get(
     `https://www.omdbapi.com/?apikey=a1a0b01a&i=${id}`
   );
 
+  console.log(response.data);
+
   setPeliculaSeleccionada(response.data);
 
 };
-
   return (
   <div>
 

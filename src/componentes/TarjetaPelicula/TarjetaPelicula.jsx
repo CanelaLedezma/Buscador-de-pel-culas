@@ -1,4 +1,4 @@
-function TarjetaPelicula({ peli }) {
+function TarjetaPelicula({ peli, obtenerDetalle }) {
 
   return (
     
@@ -13,6 +13,7 @@ function TarjetaPelicula({ peli }) {
       <p>{peli.Type}</p>
 
     </div>
+
   );
 }
 

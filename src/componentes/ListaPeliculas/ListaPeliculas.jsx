@@ -6,12 +6,13 @@ function ListaPeliculas({ peliculas, obtenerDetalle }) {
     <div>
 
       {peliculas.map((peli) => (
-       
-    <TarjetaPelicula
+
+        <TarjetaPelicula
           key={peli.imdbID}
           peli={peli}
-          obtenerDetalle = {obtenerDetalle}
+          obtenerDetalle={obtenerDetalle}
         />
+
       ))}
 
     </div>
