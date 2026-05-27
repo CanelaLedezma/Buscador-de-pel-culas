@@ -1,7 +1,8 @@
 function TarjetaPelicula({ peli }) {
 
   return (
-    <div>
+    
+    <div onClick={() => obtenerDetalle(peli.imdbID)}>
 
       <img src={peli.Poster} />
 

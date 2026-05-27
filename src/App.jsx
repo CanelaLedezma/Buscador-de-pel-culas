@@ -66,7 +66,40 @@ const obtenerDetalle = async (id) => {
 
     {error && <h2>{error}</h2>}
 
-    <ListaPeliculas peliculas={peliculas} />
+<ListaPeliculas
+  peliculas={peliculas}
+  obtenerDetalle={obtenerDetalle}
+/>
+
+{peliculaSeleccionada && (
+
+  <div>
+
+    <h2>{peliculaSeleccionada.Title}</h2>
+
+    <img src={peliculaSeleccionada.Poster} />
+
+    <p>Año: {peliculaSeleccionada.Year}</p>
+
+    <p>Género: {peliculaSeleccionada.Genre}</p>
+
+    <p>Director: {peliculaSeleccionada.Director}</p>
+
+    <p>Actores: {peliculaSeleccionada.Actors}</p>
+
+    <p>Sinopsis: {peliculaSeleccionada.Plot}</p>
+
+    <p>Duración: {peliculaSeleccionada.Runtime}</p>
+
+    <p>Idioma: {peliculaSeleccionada.Language}</p>
+
+    <p>País: {peliculaSeleccionada.Country}</p>
+
+    <p>IMDb: {peliculaSeleccionada.imdbRating}</p>
+
+  </div>
+
+)}
 
   </div>
 );

@@ -1,14 +1,16 @@
 import TarjetaPelicula from "../TarjetaPelicula/TarjetaPelicula";
 
-function ListaPeliculas({ peliculas }) {
+function ListaPeliculas({ peliculas, obtenerDetalle }) {
 
   return (
     <div>
 
       {peliculas.map((peli) => (
-        <TarjetaPelicula
+       
+    <TarjetaPelicula
           key={peli.imdbID}
           peli={peli}
+          obtenerDetalle = {obtenerDetalle}
         />
       ))}
 
