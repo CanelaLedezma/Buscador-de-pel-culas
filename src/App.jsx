@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import BarraBusqueda from "./componentes/BarraBusqueda/BarraBusqueda";
 import ListaPeliculas from "./componentes/ListaPeliculas/ListaPeliculas";
+
 function App() {
 
   const [peliculas, setPeliculas] = useState([]);
@@ -10,7 +11,8 @@ function App() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
-const buscarPeliculas = async () => {
+  
+  const buscarPeliculas = async () => {
 
   if (busqueda === "") return;
 
@@ -36,6 +38,16 @@ const buscarPeliculas = async () => {
     setLoading(false);
 
   }
+
+};
+
+const obtenerDetalle = async (id) => {
+
+  const response = await axios.get(
+    `https://www.omdbapi.com/?apikey=a1a0b01a&i=${id}`
+  );
+
+  setPeliculaSeleccionada(response.data);
 
 };
 
